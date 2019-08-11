@@ -1,0 +1,7 @@
+DRC Rules Export File for PCB: C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc
+RuleKind=Clearance|RuleName=Clearance12|Scope=Board|Minimum=12.00
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=Clearance15|Scope=Board|Minimum=15.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=Clearance|RuleName=Clearance9|Scope=Board|Minimum=6.00

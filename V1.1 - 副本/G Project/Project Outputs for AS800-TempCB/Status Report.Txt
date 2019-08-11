@@ -1,0 +1,11 @@
+Output: Simple BOM
+Type  : SimpleBOM
+From  : Variant [[No Variations]] of Project [AS800-TempCB.PrjPcb]
+   Generated File[AS800-Temp V1.1.BOM]
+   Generated File[AS800-Temp V1.1.CSV]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 19:10:33 On 2019-3-19

@@ -1,0 +1,49 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc
+Date     : 2019/3/11
+Time     : 11:00:38
+
+WARNING: Zero hole size multi-layer pad(s) detected
+   Pad U1-2(2318.525mil,1717.567mil)  Multi-Layer on Net PGND
+   Pad U25-2(2319.548mil,1116.75mil)  Multi-Layer on Net PGND
+   Pad U26-2(2318.584mil,533.735mil)  Multi-Layer on Net VDD-12
+   Pad U30-9(858.511mil,2074.171mil)  Multi-Layer on Net PGND
+
+WARNING: Multilayer Pads with 0 size Hole found
+   Pad U1-2(2318.525mil,1717.567mil)  Multi-Layer
+   Pad U25-2(2319.548mil,1116.75mil)  Multi-Layer
+   Pad U26-2(2318.584mil,533.735mil)  Multi-Layer
+   Pad U30-9(858.511mil,2074.171mil)  Multi-Layer
+   Pad Mark2-0(4380mil,241mil)  Multi-Layer
+   Pad Mark1-0(287.402mil,4027.559mil)  Multi-Layer
+
+Processing Rule : Clearance Constraint (Gap=12mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0mil) (Max=150mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=100mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=15mil) (Disabled)(All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=6mil) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 0
+Time Elapsed        : 00:00:01

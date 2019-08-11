@@ -1,0 +1,49 @@
+*************************************************************
+FileName = AS800-Temp V1.1.GBR
+AutoAperture = True
+*************************************************************
+Generating : Mechanical 1
+      File : AS800-Temp V1.1.GM1
+
+    Adding Layer      : Mechanical 1
+
+    Adding Layer      : Mechanical 1
+
+
+Used DCodes :
+    D10
+*************************************************************
+
+*************************************************************
+Generating : Drill Drawing
+      File : AS800-Temp V1.1.GD1
+
+    Adding Layer      : Mechanical 1
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+    Adding Layer      : Drill Drawing
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+*************************************************************
+
+*************************************************************
+Generating : Drill Guide
+      File : AS800-Temp V1.1.GG1
+
+    Adding Layer      : Mechanical 1
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+    Adding Layer      : Drill Guide
+
+
+Used DCodes :
+    D10
+    D12
+*************************************************************
+

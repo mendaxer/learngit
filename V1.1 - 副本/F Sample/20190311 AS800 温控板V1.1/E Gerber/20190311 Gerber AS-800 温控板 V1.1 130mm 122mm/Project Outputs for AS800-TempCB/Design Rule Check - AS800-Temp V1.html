@@ -1,0 +1,366 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-16">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script></head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\PROGRAM FILES (X86)\ALTIUM DESIGNER SUMMER 09\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">2019/3/11</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">11:00:38</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc" class="file"><acronym title="C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc">C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">10</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="IDPE42T1WUD2J2PENVWECQQ5CFNJDS4GODXIDYZEO4DAFHYEJ0BEKK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1BTW3AYU255YPPZWGC21UJSOE2YBYTG1KVFP1POZL2VZHNPPXVL">Zero hole size multi-layer pad(s) detected</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ1PSUOWOWZQBBGCKHZ5MQWVAPJ2AAO3N2BIL501DAVCSGKMBDBN">Multilayer Pads with 0 size Hole found</a></td>
+<td class="column2">6</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">10</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVXWVU1A0T4AEF0LGXVWAGJSKZIVEQ25HOIF3XDP5C2CVF1LSWOB">Clearance Constraint (Gap=12mil) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVIL3CUES0CEVMR10P2QKLHVMRPLPXDQIPHOG4HXGJ2KAURK5ABJ">Hole Size Constraint (Min=0mil) (Max=150mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTNX2NI0W22FPGTZRVYD0KCZD2EJ2VU4PO5AIXTLDBIFFXNVBDBOG">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBCH0W4AEF1WVMXGM2Q24PUD0JB1K1O3NZOVPX1O025FCWCGAS50C">Width Constraint (Min=10mil) (Max=100mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJBIU33TLNCDDNM51QIMY4DMNIBNZJBPVCLGDLPEFVZJBZVV4BYYM">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYZYYDUMJDWZFL10W4L3GXHCYBOQT0ESLDQOQKPFJS52BZL21OP">Clearance Constraint (Gap=15mil) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUS2B51W5JMNPNNHF4N3UZAJEIF3AFGYIU4CHSKGUTU30PP442Y5M">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGGH35USREKIVDDSDRCVHJFJJPU3B2JPILUYD4GMGXKVRVHQKBHB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSK1MFKL5BL5RGZODN1VYYNRGKNYVAU2FMJ4BMXGEDHWXZ1I5YZCH">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><hr><a name="IDDVJT4MXUY3ANNBWDLA1W1B04SNTD4AWEMK2SHMGUMXO3GW0FIRHO"><h2>Warnings</h2></a><a name="ID1BTW3AYU255YPPZWGC21UJSOE2YBYTG1KVFP1POZL2VZHNPPXVL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Zero hole size multi-layer pad(s) detected</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.413mil|Location2.X=18793.003mil|Location1.Y=19576.803mil|Location2.Y=19852.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.413mil|Location2.X=18793.003mil|Location1.Y=19576.803mil|Location2.Y=19852.52mil|Absolute=True">Pad U1-2(2318.525mil,1717.567mil)  Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net PGND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18510.436mil|Location2.X=18794.027mil|Location1.Y=18975.986mil|Location2.Y=19251.703mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18510.436mil|Location2.X=18794.027mil|Location1.Y=18975.986mil|Location2.Y=19251.703mil|Absolute=True">Pad U25-2(2319.548mil,1116.75mil)  Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net PGND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.472mil|Location2.X=18793.062mil|Location1.Y=18392.971mil|Location2.Y=18668.688mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.472mil|Location2.X=18793.062mil|Location1.Y=18392.971mil|Location2.Y=18668.688mil|Absolute=True">Pad U26-2(2318.584mil,533.735mil)  Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net VDD-12</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17139.949mil|Location2.X=17242.438mil|Location1.Y=19992.462mil|Location2.Y=20150.068mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17139.949mil|Location2.X=17242.438mil|Location1.Y=19992.462mil|Location2.Y=20150.068mil|Absolute=True">Pad U30-9(858.511mil,2074.171mil)  Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=0mil|Location1.Y=0mil|Location2.Y=0mil|Absolute=True">Net PGND</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDQ1PSUOWOWZQBBGCKHZ5MQWVAPJ2AAO3N2BIL501DAVCSGKMBDBN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Multilayer Pads with 0 size Hole found</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.413mil|Location2.X=18793.003mil|Location1.Y=19576.803mil|Location2.Y=19852.52mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.413mil|Location2.X=18793.003mil|Location1.Y=19576.803mil|Location2.Y=19852.52mil|Absolute=True">Pad U1-2(2318.525mil,1717.567mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18510.436mil|Location2.X=18794.027mil|Location1.Y=18975.986mil|Location2.Y=19251.703mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18510.436mil|Location2.X=18794.027mil|Location1.Y=18975.986mil|Location2.Y=19251.703mil|Absolute=True">Pad U25-2(2319.548mil,1116.75mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.472mil|Location2.X=18793.062mil|Location1.Y=18392.971mil|Location2.Y=18668.688mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18509.472mil|Location2.X=18793.062mil|Location1.Y=18392.971mil|Location2.Y=18668.688mil|Absolute=True">Pad U26-2(2318.584mil,533.735mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17139.949mil|Location2.X=17242.438mil|Location1.Y=19992.462mil|Location2.Y=20150.068mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17139.949mil|Location2.X=17242.438mil|Location1.Y=19992.462mil|Location2.Y=20150.068mil|Absolute=True">Pad U30-9(858.511mil,2074.171mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20653.628mil|Location2.X=20771.738mil|Location1.Y=18179.039mil|Location2.Y=18297.15mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20653.628mil|Location2.X=20771.738mil|Location1.Y=18179.039mil|Location2.Y=18297.15mil|Absolute=True">Pad Mark2-0(4380mil,241mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16561.029mil|Location2.X=16679.14mil|Location1.Y=21965.599mil|Location2.Y=22083.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\NiLei\Desktop\V1.1\C PCB\AS800-Temp V1.1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16561.029mil|Location2.X=16679.14mil|Location1.Y=21965.599mil|Location2.Y=22083.709mil|Absolute=True">Pad Mark1-0(287.402mil,4027.559mil)  Multi-Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><hr>
+</body>
+</html>
